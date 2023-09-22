@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
             TextView textResultado = findViewById(R.id.resultado);
             textResultado.setText(suma+"");
-
         });
     }
 }
