@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             txtDescSec.setText("1");
         }
 
-        constraintLayout.setBackgroundColor(Color.GREEN);
+        constraintLayout.setBackground(getDrawable(R.drawable.degradado_verde));
         txtNumSeries.setText("Series restantes: " + numSeries);
         txtAccion.setText("Trabaja");
     }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
                 mp.start();
-                constraintLayout.setBackgroundColor(Color.RED);
+                constraintLayout.setBackground(getDrawable(R.drawable.degradado_rojo));
                 txtAccion.setText("Descansa");
                 temporizadorDescanso.start();
             }
@@ -111,12 +111,13 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
                 mp.start();
-                constraintLayout.setBackgroundColor(Color.WHITE);
+                constraintLayout.setBackground(getDrawable(R.drawable.degradado_verde));
                 numSeries--;
                 if (numSeries > 0){
                     txtAccion.setText("Trabaja");
                     temporizadorTrabajo.start();
                 } else {
+                    constraintLayout.setBackgroundColor(Color.WHITE);
                     txtAccion.setText("Fin");
                 }
 
