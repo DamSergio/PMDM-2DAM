@@ -25,16 +25,19 @@ public class MainActivity extends AppCompatActivity {
 
     private CountDownTimer temporizadorDescanso;
     private CountDownTimer temporizadorTrabajo;
+    private ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
+
 
         txtCountDown = findViewById(R.id.txtTemp);
         txtNumSeries = findViewById(R.id.txtSeriesRest);
         txtAccion = findViewById(R.id.txtAction);
+
+        constraintLayout = findViewById(R.id.constraintLayout);
 
         ImageButton btnStart = findViewById(R.id.btnStart);
         btnStart.setOnClickListener(view -> {
@@ -50,47 +53,54 @@ public class MainActivity extends AppCompatActivity {
             constraintLayout.setBackgroundColor(Color.GREEN);
             txtNumSeries.setText("Series restantes: " + numSeries);
 
-            temporizadorDescanso = new CountDownTimer(secDesc * 1000, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    txtCountDown.setText((millisUntilFinished / 1000) + "");
-                }
-
-                @Override
-                public void onFinish() {
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
-                    mp.start();
-                    constraintLayout.setBackgroundColor(Color.GREEN);
-                    numSeries--;
-                    if (numSeries > 1){
-                        txtAccion.setText("Trabaja");
-                        temporizadorTrabajo.start();
-                    } else {
-                        txtAccion.setText("Fin");
-                    }
-
-                    txtNumSeries.setText("Series restantes: " + numSeries);
-                }
-            };
-
-            temporizadorTrabajo = new CountDownTimer(secWork * 1000, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    txtCountDown.setText((millisUntilFinished / 1000) + "");
-                }
-
-                @Override
-                public void onFinish() {
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
-                    mp.start();
-                    constraintLayout.setBackgroundColor(Color.RED);
-                    txtAccion.setText("Descansa");
-                    temporizadorDescanso.start();
-                }
-            };
+            initWorkTemp(secWork);
+            initRestTemp(secDesc);
 
             temporizadorTrabajo.start();
             txtAccion.setText("Trabaja");
         });
+    }
+
+    public void initWorkTemp(int secs){
+        temporizadorTrabajo = new CountDownTimer(secs * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                txtCountDown.setText((millisUntilFinished / 1000) + "");
+            }
+
+            @Override
+            public void onFinish() {
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
+                mp.start();
+                constraintLayout.setBackgroundColor(Color.RED);
+                txtAccion.setText("Descansa");
+                temporizadorDescanso.start();
+            }
+        };
+    }
+
+    public void initRestTemp(int secs){
+        temporizadorDescanso = new CountDownTimer(secs * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                txtCountDown.setText((millisUntilFinished / 1000) + "");
+            }
+
+            @Override
+            public void onFinish() {
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
+                mp.start();
+                constraintLayout.setBackgroundColor(Color.GREEN);
+                numSeries--;
+                if (numSeries > 0){
+                    txtAccion.setText("Trabaja");
+                    temporizadorTrabajo.start();
+                } else {
+                    txtAccion.setText("Fin");
+                }
+
+                txtNumSeries.setText("Series restantes: " + numSeries);
+            }
+        };
     }
 }
