@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer temporizadorDescanso;
     private CountDownTimer temporizadorTrabajo;
     private ConstraintLayout constraintLayout;
+    private final int COUNT_DOWN_INTERVAL = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,44 +42,47 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton btnStart = findViewById(R.id.btnStart);
         btnStart.setOnClickListener(view -> {
-            EditText txtSeries = findViewById(R.id.numSeries);
-            try {
-                this.numSeries = Integer.parseInt(txtSeries.getText().toString());
-            } catch (NumberFormatException e){
-                this.numSeries = 1;
-                txtSeries.setText("1");
-            }
-
-
-            EditText txtWorkSec = findViewById(R.id.trabajoSec);
-            try {
-                this.secWork = Integer.parseInt(txtWorkSec.getText().toString());
-            } catch (NumberFormatException e){
-                this.secWork = 1;
-                txtWorkSec.setText("1");
-            }
-
-            EditText txtDescSec = findViewById(R.id.descansoSec);
-            try {
-                this.secDesc = Integer.parseInt(txtDescSec.getText().toString());
-            } catch (NumberFormatException e){
-                this.secDesc = 1;
-                txtDescSec.setText("1");
-            }
-            
-            constraintLayout.setBackgroundColor(Color.GREEN);
-            txtNumSeries.setText("Series restantes: " + numSeries);
-
+            initComponents();
             initWorkTemp(secWork);
             initRestTemp(secDesc);
 
             temporizadorTrabajo.start();
-            txtAccion.setText("Trabaja");
         });
     }
 
+    public void initComponents(){
+        EditText txtSeries = findViewById(R.id.numSeries);
+        try {
+            this.numSeries = Integer.parseInt(txtSeries.getText().toString());
+        } catch (NumberFormatException e){
+            this.numSeries = 1;
+            txtSeries.setText("1");
+        }
+
+        EditText txtWorkSec = findViewById(R.id.trabajoSec);
+        try {
+            this.secWork = Integer.parseInt(txtWorkSec.getText().toString());
+        } catch (NumberFormatException e){
+            this.secWork = 1;
+            txtWorkSec.setText("1");
+        }
+
+        EditText txtDescSec = findViewById(R.id.descansoSec);
+        try {
+            this.secDesc = Integer.parseInt(txtDescSec.getText().toString());
+        } catch (NumberFormatException e){
+            this.secDesc = 1;
+            txtDescSec.setText("1");
+        }
+
+        constraintLayout.setBackgroundColor(Color.GREEN);
+        txtNumSeries.setText("Series restantes: " + numSeries);
+        txtAccion.setText("Trabaja");
+    }
+
     public void initWorkTemp(int secs){
-        temporizadorTrabajo = new CountDownTimer(secs * 1000, 1000) {
+        int countDownTimeMiliSec = secs * 1000;
+        temporizadorTrabajo = new CountDownTimer(countDownTimeMiliSec, COUNT_DOWN_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
                 txtCountDown.setText((millisUntilFinished / 1000) + "");
@@ -96,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initRestTemp(int secs){
-        temporizadorDescanso = new CountDownTimer(secs * 1000, 1000) {
+        int countDownTimeMiliSec = secs * 1000;
+        temporizadorDescanso = new CountDownTimer(countDownTimeMiliSec, COUNT_DOWN_INTERVAL) {
             @Override
             public void onTick(long millisUntilFinished) {
                 txtCountDown.setText((millisUntilFinished / 1000) + "");
@@ -106,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
                 mp.start();
-                constraintLayout.setBackgroundColor(Color.GREEN);
+                constraintLayout.setBackgroundColor(Color.WHITE);
                 numSeries--;
                 if (numSeries > 0){
                     txtAccion.setText("Trabaja");
