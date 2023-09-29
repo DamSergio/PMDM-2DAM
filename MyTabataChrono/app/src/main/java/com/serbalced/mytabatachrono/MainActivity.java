@@ -61,17 +61,15 @@ public class MainActivity extends AppCompatActivity {
                     MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.gong);
                     mp.start();
                     constraintLayout.setBackgroundColor(Color.GREEN);
-
+                    numSeries--;
                     if (numSeries > 1){
-                        numSeries--;
                         txtAccion.setText("Trabaja");
-                        txtNumSeries.setText("Series restantes: " + numSeries);
                         temporizadorTrabajo.start();
                     } else {
-                        numSeries--;
-                        txtNumSeries.setText("Series restantes: " + numSeries);
                         txtAccion.setText("Fin");
                     }
+
+                    txtNumSeries.setText("Series restantes: " + numSeries);
                 }
             };
 
