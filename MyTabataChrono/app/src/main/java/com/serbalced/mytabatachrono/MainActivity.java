@@ -42,13 +42,29 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnStart = findViewById(R.id.btnStart);
         btnStart.setOnClickListener(view -> {
             EditText txtSeries = findViewById(R.id.numSeries);
-            this.numSeries = Integer.parseInt(txtSeries.getText().toString());
+            try {
+                this.numSeries = Integer.parseInt(txtSeries.getText().toString());
+            } catch (NumberFormatException e){
+                this.numSeries = 1;
+                txtSeries.setText("1");
+            }
+
 
             EditText txtWorkSec = findViewById(R.id.trabajoSec);
-            this.secWork = Integer.parseInt(txtWorkSec.getText().toString());
+            try {
+                this.secWork = Integer.parseInt(txtWorkSec.getText().toString());
+            } catch (NumberFormatException e){
+                this.secWork = 1;
+                txtWorkSec.setText("1");
+            }
 
             EditText txtDescSec = findViewById(R.id.descansoSec);
-            this.secDesc = Integer.parseInt(txtDescSec.getText().toString());
+            try {
+                this.secDesc = Integer.parseInt(txtDescSec.getText().toString());
+            } catch (NumberFormatException e){
+                this.secDesc = 1;
+                txtDescSec.setText("1");
+            }
             
             constraintLayout.setBackgroundColor(Color.GREEN);
             txtNumSeries.setText("Series restantes: " + numSeries);
