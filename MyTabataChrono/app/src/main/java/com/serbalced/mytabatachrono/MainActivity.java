@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             txtDescSec.setText("1");
         }
 
+        System.out.println("sadff");
         constraintLayout.setBackground(getDrawable(R.drawable.degradado_verde));
         txtNumSeries.setText("Series restantes: " + numSeries);
         txtAccion.setText("Trabaja");
