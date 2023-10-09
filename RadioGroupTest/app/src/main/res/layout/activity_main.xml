@@ -51,4 +51,15 @@
             android:layout_height="wrap_content"
             android:text="Sevilla" />
     </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imgEscudo"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="276dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@drawable/atletic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

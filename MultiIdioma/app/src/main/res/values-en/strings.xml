@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MultiIdioma</string>
+    <string name="welcome">Wellcome to sign-up form</string>
+    <string name="name">name</string>
+    <string name="firtsName">Firts name</string>
+    <string name="mail">Email</string>
+    <string name="send">Send</string>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MultiIdioma</string>
+    <string name="welcome">Bienvenidos al formulario de registro</string>
+    <string name="name">Nombre</string>
+    <string name="firtsName">Apellidos</string>
+    <string name="mail">Correo</string>
+    <string name="send">Enviar</string>
+</resources>
