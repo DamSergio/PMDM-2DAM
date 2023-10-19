@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String psw = s.toString();
                 for (char c : psw.toCharArray()){
-                    if (!upper && Character.isUpperCase(c)){
+                    if (!upper && c >= 'A' && c <= 'Z'){
                         pb.setProgress(pb.getProgress() + 25);
                         upper = true;
                     }
