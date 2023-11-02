@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class DialogoSexo  extends DialogFragment {
+public class DialogoSexo extends DialogFragment {
     OnRespuestaSexo miRespuesta;
 
     @Override
