@@ -3,15 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/btnBombs"
         android:icon="@drawable/default_bomb"
+        android:title="bombs"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/btnIns"
-        android:title="Instrucciones" />
+        android:title="@string/insTittle" />
     <item
         android:id="@+id/btnReset"
-        android:title="Reiniciar el juego" />
+        android:title="@string/reset" />
     <item
         android:id="@+id/btnDiff"
-        android:title="Configura el juego" />
+        android:title="@string/settings" />
 </menu>

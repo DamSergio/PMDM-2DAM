@@ -15,8 +15,16 @@
         encontrado todas las minas.
     </string>
 
+    <string name="reset">Reiniciar el juego</string>
+
+    <string name="settings">Configura el juego</string>
     <string name="diffTitle">Dificultad</string>
     <string name="diffNoob">Nivel Principiante</string>
     <string name="diffAma">Nivel Amateur</string>
     <string name="diffAdv">Nivel Avanzado</string>
+    <string name="diffBack">Volver</string>
+
+    <string name="bombsTitle">Elige bomba</string>
+
+    <string name="win">GANASTES!!!</string>
 </resources>

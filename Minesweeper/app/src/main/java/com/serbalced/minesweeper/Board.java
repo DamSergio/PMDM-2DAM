@@ -19,16 +19,22 @@ public class Board {
     public int[][] board;
     private ArrayList<int[]> holes;
     private ArrayList<int[]> flags;
+    private ArrayList<int[]> bombs;
     private OnBoardUpdate updateBoard;
 
     public Board(int dim, int numBombs, OnBoardUpdate updater){
         this.dim = dim;
         this.numBombs = numBombs;
+        this.bombs = new ArrayList<>();
         createBoard();
         setNumCells();
         this.holes = new ArrayList<>();
         this.flags = new ArrayList<>();
         this.updateBoard = updater;
+    }
+
+    public ArrayList<int[]> getBombs(){
+        return bombs;
     }
 
     private void createBoard(){
@@ -47,6 +53,10 @@ public class Board {
 
             if (board[row][col] != -1){
                 board[row][col] = -1;
+
+                int pos[] = {row, col};
+                bombs.add(pos);
+
                 bombsPlaced++;
             }
         }

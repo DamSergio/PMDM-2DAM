@@ -7,6 +7,7 @@ import androidx.gridlayout.widget.GridLayout;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,9 +19,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements Board.OnBoardUpdate, DifficultySelection.OnDiffChange{
+public class MainActivity extends AppCompatActivity implements Board.OnBoardUpdate, DifficultySelection.OnDiffChange, BombSelection.OnBombSel {
     int dim = 8;
-    int numBombs = 10;
+    int numBombs = 15;
     int flags = 0;
     ConstraintLayout cl;
     GridLayout gl;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
     MainActivity main = this;
     boolean gameRunning;
     int bombImg = 0;
-    int imgsBombs[] = {R.drawable.default_bomb};
+    int imgsBombs[] = {R.drawable.default_bomb, R.drawable.c4, R.drawable.tnt};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +73,6 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
                         getDrawable(R.drawable.cell)
                 );
 
-                final int row = r;
-                final int col = c;
-
                 b.setTypeface(null, Typeface.BOLD);
 
                 b.setOnClickListener(clickListener(r, c));
@@ -94,13 +92,19 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
                 Toast.LENGTH_LONG
         ).show();
 
+        for (int[] pos : board.getBombs()){
+            cells[pos[0]][pos[1]].setBackground(
+                    getDrawable(imgsBombs[bombImg])
+            );
+        }
+
         gameRunning = false;
     }
 
     public void win(){
         Toast.makeText(
                 this,
-                "GANAS",
+                R.string.win,
                 Toast.LENGTH_LONG
         ).show();
 
@@ -135,12 +139,12 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
                     return;
                 }
 
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.pop);
+                mp.start();
+
                 boolean safe = board.dig(r, c);
                 if (!safe){
-                    v.setBackgroundColor(Color.WHITE);
-                    v.setBackground(
-                            getDrawable(imgsBombs[bombImg])
-                    );
+                    bombFound(v);
                     lose();
                 }
             }
@@ -157,6 +161,17 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
 
                 if (board.board[r][c] != -1){
                     lose();
+
+                    cells[r][c].setBackground(
+                            getDrawable(R.drawable.free_cell)
+                    );
+                    if (board.board[r][c] > 0) {
+                        cells[r][c].setText(
+                                board.board[r][c] + ""
+                        );
+                    }
+                    cells[r][c].setTextColor(setCellColor(new int[]{r, c}));
+
                     return true;
                 }
 
@@ -183,6 +198,12 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
         };
     }
 
+    public void bombFound(View v){
+        v.setBackground(
+                getDrawable(imgsBombs[bombImg])
+        );
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //momento en el que se crea el menu de opciones
@@ -200,11 +221,15 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
         }
         if (item.getItemId() == R.id.btnDiff){
             DifficultySelection diffDialog = new DifficultySelection();
-            diffDialog.show(getSupportFragmentManager(), "difficulty selection");
+            diffDialog.show(getSupportFragmentManager(), "difficulty_selection");
         }
         if (item.getItemId() == R.id.btnIns){
             InstructionsDialog ins = new InstructionsDialog();
             ins.show(getSupportFragmentManager(), "instructions");
+        }
+        if (item.getItemId() == R.id.btnBombs){
+            BombSelection bs = new BombSelection();
+            bs.show(getSupportFragmentManager(), "bomb_sel");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -212,16 +237,19 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
     @Override
     public void onUpdate(ArrayList<int[]> holes) {
         for (int[] i : holes){
-//            if (!flagsId.contains(cells[i[0]][i[1]].getId())){
-//                cells[i[0]][i[1]].setBackground(
-//                        getDrawable(R.drawable.free_cell)
-//                );
-//            }
-
             if (board.board[i[0]][i[1]] >= 0){
                 cells[i[0]][i[1]].setBackground(
                         getDrawable(R.drawable.free_cell)
                 );
+            }
+
+            if (board.board[i[0]][i[1]] == 0){
+                cells[i[0]][i[1]].setOnClickListener(view -> {
+                    return;
+                });
+                cells[i[0]][i[1]].setOnLongClickListener(view -> {
+                    return false;
+                });
             }
 
             if (board.board[i[0]][i[1]] > 0){
@@ -232,37 +260,35 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
                 cells[i[0]][i[1]].setOnClickListener(view -> {
                     board.clickOnNum(i[0], i[1]);
                 });
-            }
 
-            switch (board.board[i[0]][i[1]]){
-                case 1:
-                    cells[i[0]][i[1]].setTextColor(Color.BLUE);
-                    break;
-                case 2:
-                    cells[i[0]][i[1]].setTextColor(Color.GREEN);
-                    break;
-                case 3:
-                    cells[i[0]][i[1]].setTextColor(Color.RED);
-                    break;
-                case 4:
-                    cells[i[0]][i[1]].setTextColor(
-                            getColor(R.color.dBlue)
-                    );
-                    break;
-                case 5:
-                    cells[i[0]][i[1]].setTextColor(Color.MAGENTA);
-                    break;
-                case 6:
-                    cells[i[0]][i[1]].setTextColor(Color.CYAN);
-                    break;
-                case 7:
-                    cells[i[0]][i[1]].setTextColor(Color.BLACK);
-                    break;
-                case 8:
-                    cells[i[0]][i[1]].setTextColor(Color.LTGRAY);
-                    break;
+                cells[i[0]][i[1]].setTextColor(setCellColor(i));
             }
         }
+    }
+
+    public int setCellColor(int[] i){
+        switch (board.board[i[0]][i[1]]){
+            case 1:
+                return Color.BLUE;
+            case 2:
+                return Color.GREEN;
+            case 3:
+                return Color.RED;
+            case 4:
+                return (
+                        getColor(R.color.dBlue)
+                );
+            case 5:
+                return Color.MAGENTA;
+            case 6:
+                return Color.CYAN;
+            case 7:
+                return Color.BLACK;
+            case 8:
+                return Color.LTGRAY;
+        }
+
+        return Color.BLACK;
     }
 
     @Override
@@ -271,5 +297,10 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
         this.numBombs = bombs;
         gl.removeAllViews();
         play();
+    }
+
+    @Override
+    public void onBombSel(int pos) {
+        bombImg = pos;
     }
 }

@@ -49,24 +49,21 @@ public class DifficultySelection extends DialogFragment {
                 switch (which){
                     case 0:
                         dim = 8;
-                        bombs = 10;
+                        bombs = 15;
                         break;
                     case 1:
                         dim = 12;
-                        bombs = 16;
+                        bombs = 30;
                         break;
                     case 2:
                         dim = 16;
-                        bombs = 22;
+                        bombs = 60;
                         break;
-                    default:
-                        dim = 8;
-                        bombs = 10;
                 }
             }
         });
 
-        myBuilder.setPositiveButton("Volver", new DialogInterface.OnClickListener() {
+        myBuilder.setPositiveButton(getString(R.string.diffBack), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 diff.onDiffChange(dim, bombs);
