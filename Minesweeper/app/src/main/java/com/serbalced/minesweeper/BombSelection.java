@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +19,8 @@ import androidx.fragment.app.DialogFragment;
 public class BombSelection extends DialogFragment {
     private OnBombSel bombSel;
     private Bomb[] bombs = {
-            new Bomb("Default bomb", R.drawable.default_bomb),
+            new Bomb("Clasic", R.drawable.bomb),
+            new Bomb("HD bomb", R.drawable.hd_bomb),
             new Bomb("C4", R.drawable.c4),
             new Bomb("TNT", R.drawable.tnt)
     };
@@ -44,13 +43,6 @@ public class BombSelection extends DialogFragment {
                 R.layout.bombs_sel,
                 bombs
         );
-
-//        myBuilder.setSingleChoiceItems(bombAdapter, 0, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                bomb = which;
-//            }
-//        });
 
         myBuilder.setAdapter(bombAdapter, new DialogInterface.OnClickListener() {
             @Override

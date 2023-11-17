@@ -18,6 +18,7 @@ public class Board {
     private int numBombs;
     public int[][] board;
     private ArrayList<int[]> holes;
+    private ArrayList<int[]> newHoles;
     private ArrayList<int[]> flags;
     private ArrayList<int[]> bombs;
     private OnBoardUpdate updateBoard;
@@ -29,6 +30,7 @@ public class Board {
         createBoard();
         setNumCells();
         this.holes = new ArrayList<>();
+        this.newHoles = new ArrayList<>();
         this.flags = new ArrayList<>();
         this.updateBoard = updater;
     }
@@ -96,13 +98,14 @@ public class Board {
     public boolean dig(int r, int c){
         int pos[] = {r, c};
         holes.add(pos);
+        newHoles.add(pos);
 
         if (board[r][c] == -1){
             return false;
         }
 
         if (board[r][c] > 0){
-            updateBoard.onUpdate(holes);
+            updateBoard.onUpdate(newHoles);
             return true;
         }
 
@@ -120,7 +123,7 @@ public class Board {
                 }
             }
         }
-        updateBoard.onUpdate(holes);
+        updateBoard.onUpdate(newHoles);
         return true;
     }
 

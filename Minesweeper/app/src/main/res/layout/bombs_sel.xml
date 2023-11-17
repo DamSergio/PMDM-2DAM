@@ -11,7 +11,7 @@
         android:layout_height="67dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/default_bomb" />
+        app:srcCompat="@drawable/hd_bomb" />
 
     <TextView
         android:id="@+id/txtName"

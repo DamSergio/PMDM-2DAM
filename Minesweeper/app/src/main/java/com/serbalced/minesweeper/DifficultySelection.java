@@ -57,7 +57,7 @@ public class DifficultySelection extends DialogFragment {
                         break;
                     case 2:
                         dim = 16;
-                        bombs = 60;
+                        bombs = 45;
                         break;
                 }
             }

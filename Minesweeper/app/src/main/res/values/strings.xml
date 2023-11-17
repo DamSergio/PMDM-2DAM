@@ -27,4 +27,5 @@
     <string name="bombsTitle">Elige bomba</string>
 
     <string name="win">GANASTES!!!</string>
+    <string name="lose">Perdistes :C</string>
 </resources>

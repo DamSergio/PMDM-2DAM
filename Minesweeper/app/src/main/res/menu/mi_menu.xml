@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/btnBombs"
-        android:icon="@drawable/default_bomb"
+        android:icon="@drawable/hd_bomb"
         android:title="bombs"
         app:showAsAction="ifRoom" />
     <item

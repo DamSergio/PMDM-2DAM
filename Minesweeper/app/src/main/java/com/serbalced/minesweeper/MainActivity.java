@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
     MainActivity main = this;
     boolean gameRunning;
     int bombImg = 0;
-    int imgsBombs[] = {R.drawable.default_bomb, R.drawable.c4, R.drawable.tnt};
+    int imgsBombs[] = {R.drawable.bomb, R.drawable.hd_bomb, R.drawable.c4, R.drawable.tnt};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +71,11 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
                 Button b = new Button(getApplicationContext());
                 b.setLayoutParams(lp);
                 b.setBackground(
-                        getDrawable(R.drawable.cell)
+                        getDrawable(R.drawable.cell1)
                 );
 
                 b.setTypeface(null, Typeface.BOLD);
+                b.setTextSize(TypedValue.COMPLEX_UNIT_SP, dim == 8 ? 30 : 20);
 
                 b.setOnClickListener(clickListener(r, c));
                 b.setOnLongClickListener(longClickListener(r, c));
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
     public void lose(){
         Toast.makeText(
                 this,
-                "PIERDES",
+                R.string.lose,
                 Toast.LENGTH_LONG
         ).show();
 
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
             for (int c = 0; c < dim; c++){
                 cells[r][c].setText("");
                 cells[r][c].setBackground(
-                        getDrawable(R.drawable.cell)
+                        getDrawable(R.drawable.cell1)
                 );
 
                 cells[r][c].setOnClickListener(clickListener(r, c));
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
                     lose();
 
                     cells[r][c].setBackground(
-                            getDrawable(R.drawable.free_cell)
+                            getDrawable(R.drawable.cell2)
                     );
                     if (board.board[r][c] > 0) {
                         cells[r][c].setText(
@@ -239,7 +241,7 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
         for (int[] i : holes){
             if (board.board[i[0]][i[1]] >= 0){
                 cells[i[0]][i[1]].setBackground(
-                        getDrawable(R.drawable.free_cell)
+                        getDrawable(R.drawable.cell2)
                 );
             }
 
@@ -293,6 +295,13 @@ public class MainActivity extends AppCompatActivity implements Board.OnBoardUpda
 
     @Override
     public void onDiffChange(int dim, int bombs) {
+        if (dim == 0){
+            dim = 8;
+        }
+
+        if (bombs == 0){
+            bombs = 15;
+        }
         this.dim = dim;
         this.numBombs = bombs;
         gl.removeAllViews();

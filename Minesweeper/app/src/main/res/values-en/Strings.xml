@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Minesweeper</string>
+
+    <string name="insTittle">Instructions</string>
+    <string name="insMsg">
+        When you click on a box, a
+        number that identifies how many mines there are
+        around. Be careful because if you click on
+        a square that has a hidden mine,
+        you will lose. If you believe or are certain
+        that there is a mine, long click on
+        the box to mark it. Don\'t click
+        long in a square where there is no mine
+        because you will lose. You win once you have
+        found all the mines.
+    </string>
+
+    <string name="reset">Restart game</string>
+
+    <string name="settings">Game settings</string>
+    <string name="diffTitle">Difficulty</string>
+    <string name="diffNoob">Begginer</string>
+    <string name="diffAma">Amateur</string>
+    <string name="diffAdv">Advanced</string>
+    <string name="diffBack">Back</string>
+
+    <string name="bombsTitle">Choose bomb</string>
+
+    <string name="win">YOU WIN!!!</string>
+    <string name="lose">You lose :C</string>
+</resources>
