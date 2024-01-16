@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_new_list"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/menu_new_list" />
+        <item
+            android:id="@+id/nav_show_lists"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_show_lists" />
+        <item
+            android:id="@+id/nav_new_product"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_create_product" />
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@android:drawable/ic_menu_share"
+            android:title="@string/menu_share" />
+    </group>
+</menu>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_new_list">
+
+    <fragment
+        android:id="@+id/nav_new_list"
+        android:name="com.serbalced.practica04_lista_de_la_compra.ui.new_list.NewListFragment"
+        android:label="@string/menu_new_list"
+        tools:layout="@layout/fragment_new_list" />
+
+    <fragment
+        android:id="@+id/nav_show_lists"
+        android:name="com.serbalced.practica04_lista_de_la_compra.ui.show_lists.ShowListsFragment"
+        android:label="@string/menu_show_lists"
+        tools:layout="@layout/fragment_show_lists" />
+
+    <fragment
+        android:id="@+id/nav_new_product"
+        android:name="com.serbalced.practica04_lista_de_la_compra.ui.new_product.NewProductFragment"
+        android:label="@string/menu_create_product"
+        tools:layout="@layout/fragment_new_product" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.serbalced.practica04_lista_de_la_compra.ui.share_list.ShareListFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share_list" />
+</navigation>

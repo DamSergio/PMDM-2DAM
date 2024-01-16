@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Practica04_Lista_De_La_Compra</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Ribera del tajo</string>
+    <string name="nav_header_subtitle">Listas de la compra</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="menu_new_list">Nueva Lista</string>
+    <string name="menu_show_lists">Consultar Listas</string>
+    <string name="menu_create_product">Crear Producto</string>
+    <string name="menu_share">Compartir Lista</string>
+
+    <string name="connectivity_error">La aplicacion necesita internet para descargar la base de datos.\n
+                                        Conectese a internet y reinicie la aplicacion.
+    </string>
+
+    <string name="btn_new_list">Crear Nueva Lista</string>
+    <string name="no_list_name_error">Necesario nombre de l lista</string>
+    <string name="txt_hint_name_new_list_">Nombre de la lista</string>
+    <string name="btn_new_list_accept">Crear Lista</string>
+    <string name="txt_amount">Cantidad</string>
+
+    <string name="shopping_lists_dialog_title">Selecciona una lista</string>
+    <string name="btn_shopping_list_accept">Modificar</string>
+
+    <string name="btn_create_product">Crear Producto</string>
+    <string name="txt_hint_name_product">Nombre del producto</string>
+    <string name="txt_hint_price_product">Precio del producto</string>
+    <string name="txt_hint_desc_product">Descripcion del producto</string>
+    <string name="toast_no_img_selected">Porfavor seleccione una imagen</string>
+    <string name="toast_no_name">Porfavor esccriba el nombre</string>
+    <string name="toast_no_desc">Porfavor esccriba la descripcion</string>
+    <string name="product_created">Producto creado</string>
+
+    <string name="contacts_permission_denied">Necesario permiso para acceder a contactos</string>
+    <string name="notifications_permission_denied">Necesario permiso para publicar notificaciones</string>
+    <string name="sms_permission_denied">Necesario permiso para enviar sms</string>
+    <string name="btn_send_SMS">Enviar por SMS</string>
+    <string name="btn_send_WSP">Enviar por WhatsApp</string>
+    <string name="chk_alarm">Enviar a la hora seleecionada</string>
+    <string name="txt_hint_hour">Hora</string>
+    <string name="txt_hint_minute">Minuto</string>
+    <string name="list_sent">Lista enviada</string>
+</resources>
