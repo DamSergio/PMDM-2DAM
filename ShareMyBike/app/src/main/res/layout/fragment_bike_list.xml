@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".BikeFragment"
+    tools:context=".mainPanel.ui.nav_bikes.BikeFragment"
     tools:listitem="@layout/fragment_bike" />

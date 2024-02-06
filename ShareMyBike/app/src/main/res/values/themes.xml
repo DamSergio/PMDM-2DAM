@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.ShareMyBike" parent="Base.Theme.ShareMyBike" />
+
+    <style name="Theme.ShareMyBike.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ShareMyBike.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ShareMyBike.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

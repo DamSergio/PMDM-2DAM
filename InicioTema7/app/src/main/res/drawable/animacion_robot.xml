@@ -1,0 +1,13 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/robot1" android:duration="200" />
+    <item android:drawable="@drawable/robot2" android:duration="200" />
+    <item android:drawable="@drawable/robot3" android:duration="200" />
+    <item android:drawable="@drawable/robot4" android:duration="200" />
+    <item android:drawable="@drawable/robot5" android:duration="200" />
+    <item android:drawable="@drawable/robot6" android:duration="200" />
+    <item android:drawable="@drawable/robot7" android:duration="200" />
+    <item android:drawable="@drawable/robot8" android:duration="200" />
+    <item android:drawable="@drawable/robot9" android:duration="200" />
+    <item android:drawable="@drawable/robot10" android:duration="200" />
+</animation-list>

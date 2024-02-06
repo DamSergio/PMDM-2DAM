@@ -79,6 +79,17 @@
         app:srcCompat="@drawable/baseline_alternate_email_24" />
 
     <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="122dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="16dp"
+        android:text="Logout"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +97,9 @@
         android:text="LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+    </com.google.android.gms.common.SignInButton>
 
     <ImageView
         android:id="@+id/imageView2"
