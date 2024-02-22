@@ -23,9 +23,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback, View.O
     public boolean cazado = false;
     public Bitmap explosion;
     public Explosion boom;
+    public Activity miContexto;
 
     public Juego(Activity context) {
         super(context);
+        miContexto = context;
         holder = getHolder();
         holder.addCallback(this);
     }
@@ -73,11 +75,15 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback, View.O
 
         if (cazado && boom == null) {
             // CAMBIAR COORDENADAS
-            boom = new Explosion(this, robot.x + (robot.bitmapRobot.getWidth() / 2), robot.y + (robot.bitmapRobot.getHeight() / 2));
+            boom = new Explosion(this, robot.x, robot.y);
         }
 
         if (boom != null) {
             boom.actualizarEstado();
+
+            if (boom.haTerminado()) {
+                finJuego();
+            }
         }
     }
 
@@ -108,6 +114,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback, View.O
         if (boom != null) {
             boom.dibujar(canvas);
         }
+    }
+
+    public void finJuego() {
+        bucle.JuegoEnEjecucion = false;
+        miContexto.finish();
     }
 
     @Override

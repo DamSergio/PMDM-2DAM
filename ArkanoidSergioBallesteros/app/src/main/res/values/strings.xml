@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ArkanoidSergioBallesteros</string>
+
+    <string name="btn_play">Jugar</string>
+</resources>
